@@ -32,4 +32,10 @@ export const SocketService = {
       this.socket.on(event, callback);
     }
   },
+
+  off(event: string, callback: (...args: any[]) => void) {
+    if (this.socket) {
+      this.socket.off(event, callback);
+    }
+  }
 };
