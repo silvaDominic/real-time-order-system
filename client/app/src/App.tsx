@@ -2,14 +2,15 @@ import React, { useEffect } from 'react';
 import './App.css';
 
 import { SocketService } from "../../core/socket.service";
+import { mapOrder } from "../utils/mapper.util";
 
 function App() {
 
   useEffect(() => {
     SocketService.connect();
 
-    SocketService.on('order_event', (data: unknown) => {
-      console.log('Received order event', data);
+    SocketService.on('order_event', (data: any) => {
+      data.map((item: any) => console.log(mapOrder(item)));
     });
 
     return () => {
