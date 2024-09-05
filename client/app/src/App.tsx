@@ -5,6 +5,7 @@ import { SocketService } from "../../core/socket.service";
 import { mapOrder } from "../utils/mapper.util";
 import { OrderViewModel } from "../models/order.model";
 import { OrderTable } from "../components/order/order-table.component";
+import { Utils } from "../utils/utils";
 
 function App() {
   const [orders, setOrders] = useState<OrderViewModel[]>([]);
@@ -17,21 +18,11 @@ function App() {
     SocketService.connect();
 
     SocketService.on('order_event', (data: any) => {
-      const incomingOrders = data.map((item: any) => ({[item.id]: item})); // Mapping by id gives O(1) look up times
-      const updatedOrders = data.map((item: any) => {
-        // If order already exists, update it
-        if (incomingOrders[item.id] !== undefined) {
-          return mapOrder(incomingOrders[item]);
-        }
-        // Otherwise return item
-        return mapOrder(item);
-      });
-      setOrders(updatedOrders);
-      setTotalOrderCount(updatedOrders.length);
+      setOrders((prevState: OrderViewModel[]) => Utils.mergeArrays(prevState, data.map((item: any) => mapOrder(item))));
     });
 
     return () => {
-      SocketService.off('order_event', () =>{
+      SocketService.off('order_event', () => {
         console.log('Unsubscribing...');
       });
       SocketService.disconnect();
@@ -42,6 +33,7 @@ function App() {
     const filtered = orders.filter((item: OrderViewModel) => item.price.toString().includes(searchQuery));
     setFilteredOrders(filtered);
     setFilteredOrderCount(filtered.length)
+    setTotalOrderCount(orders.length);
   }, [searchQuery, orders]);
 
   function onSearch(event: ChangeEvent<HTMLInputElement>): void {
@@ -57,7 +49,7 @@ function App() {
         <h2>Filtered Orders: {filteredOrderCount}</h2>
       </div>
 
-      <OrderTable orders={filteredOrders} />
+      <OrderTable orders={filteredOrders}/>
     </div>
   );
 }
