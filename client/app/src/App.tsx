@@ -42,12 +42,19 @@ function App() {
 
   return (
     <div className="App">
-      <input id='search-field' placeholder="Search by price..." type="text" value={searchQuery} onChange={onSearch}/>
+      <div id="header">
+        <div>
+          <input id='search-field' placeholder="Search by price..." type="text" value={searchQuery}
+                 onChange={onSearch}/>
+          <div><span>Numbers and decimals only</span></div>
+        </div>
 
-      <div className='order-counter-container'>
-        <h2>Total Orders: {totalOrderCount}</h2>
-        <h2>Filtered Orders: {filteredOrderCount}</h2>
+        <div className='order-counter-container'>
+          <h2>Total Orders: {totalOrderCount}</h2>
+          <h2>Filtered Orders: {filteredOrderCount}</h2>
+        </div>
       </div>
+
 
       <OrderTable orders={filteredOrders}/>
     </div>

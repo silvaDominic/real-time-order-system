@@ -1,6 +1,6 @@
 .table-wrapper {
     border-collapse: collapse;
-    margin: 25px 0;
+    margin-bottom: 25px;
     font-size: 0.9em;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -23,5 +23,34 @@
 
 .table-wrapper tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
+}
+
+#header {
+    height: auto;
+    background-color: #000000;
+    position: sticky;
+    top: 0;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input {
+    height: 25px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    padding: 5px;
+    width: 300px;
+}
+
+#header div {
+    margin-top: -10px;
+    padding-bottom: 15px;
+}
+
+#header span {
+    color: #ffffff;
+    font-size: 12px;
 }
 
