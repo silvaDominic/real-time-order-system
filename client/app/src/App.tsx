@@ -45,7 +45,7 @@ function App() {
   }, [searchQuery, orders]);
 
   function onSearch(event: ChangeEvent<HTMLInputElement>): void {
-    setSearchQuery(event.target.value);
+    setSearchQuery(event.target.value.replace(/[^0-9.]/g, '')); // Restricts input to numbers and decimals
   }
 
   return (
