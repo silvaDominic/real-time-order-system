@@ -21,11 +21,12 @@ export function mapOrder(orderDTO: any): OrderViewModel {
  * @param addressDTO
  */
 export function mapAddress(addressDTO: string): AddressViewModel {
+  // Normalize tokens -- this would be more robust in a production app
   const [streetAddress, city, stateZip] = addressDTO.trim().split(",");
-  const [state, zipCode] = stateZip;
+  const [state, zipCode] = stateZip.trim().split(" ");
 
   return new AddressViewModel({
-    city,
+    city: city.trim(),
     state,
     zipCode,
     streetAddress,
