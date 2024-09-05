@@ -3,6 +3,11 @@ import { ORDER_STATUS, OrderViewModel } from "../../models/order.model";
 import './order.styles.css';
 
 export function OrderTable({orders}: {orders: OrderViewModel[]}) {
+  function formatStatus(status: ORDER_STATUS): string {
+    const str: string = status.toLowerCase()
+    return str.charAt(0).toUpperCase() + str.slice(1).replace('_', ' ');
+  }
+
   return (
     <div className='table-wrapper'>
       <table>
@@ -23,7 +28,7 @@ export function OrderTable({orders}: {orders: OrderViewModel[]}) {
               <tr key={order.id}>
                 <td>{order.customer}</td>
                 <td>{order.itemName}</td>
-                <td>{order.status}</td>
+                <td>{formatStatus(order.status)}</td>
                 <td>{order.price}</td>
                 <td>{order.destination.streetAddress}</td>
               </tr>
