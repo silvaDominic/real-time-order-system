@@ -1,10 +1,11 @@
-import { Address, AddressConfig } from "./address.model";
+import { AddressConfig } from "./address.model";
 
 export enum ORDER_STATUS {
   CREATED = "CREATED",
   COOKED = "COOKED",
   DRIVER_RECEIVED = "DRIVER_RECEIVED",
   DELIVERED = "DELIVERED",
+  CANCELLED = "CANCELLED",
   UNKNOWN = "UNKNOWN",
 }
 
