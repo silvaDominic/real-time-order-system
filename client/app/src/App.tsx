@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import { SocketService } from "../../core/socket.service";
 import { mapOrder } from "../utils/mapper.util";
+import { OrderViewModel } from "../models/order.model";
+import { OrderTable } from "../components/order/order-table.component";
 
 function App() {
+  const [orders, setOrders] = useState<OrderViewModel[]>([]);
 
   useEffect(() => {
     SocketService.connect();
 
     SocketService.on('order_event', (data: any) => {
-      data.map((item: any) => console.log(mapOrder(item)));
+      setOrders([...orders, ...data.map((item: any) => mapOrder(item))]);
     });
 
     return () => {
@@ -23,7 +26,7 @@ function App() {
 
   return (
     <div className="App">
-      TESTING
+      <OrderTable orders={orders} />
     </div>
   );
 }
