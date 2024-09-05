@@ -1,5 +1,5 @@
 export const CurrencyUtil = {
   centsToDollars(cents: number): number {
-    return cents * 100;
+    return cents / 100;
   }
 }
