@@ -15,7 +15,7 @@ export interface OrderConfig {
   price: number, // In cents
   itemName: string,
   customer: string,
-  destination: AddressConfig,
+  destination: string,
   sentAtSecond: number
 }
 
@@ -25,7 +25,7 @@ export class OrderModel {
   price: number; // In cents
   itemName: string;
   customer: string;
-  destination: AddressConfig;
+  destination: string;
   sentAtSecond: number;
 
   constructor(config: OrderConfig) {

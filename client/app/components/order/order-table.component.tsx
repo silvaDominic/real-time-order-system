@@ -30,7 +30,7 @@ export function OrderTable({orders}: {orders: OrderModel[]}) {
                 <td>{order.itemName}</td>
                 <td>{formatStatus(order.status)}</td>
                 <td>{order.price}</td>
-                <td>{order.destination.streetAddress}</td>
+                <td>{order.destination}</td>
               </tr>
             )
           })
