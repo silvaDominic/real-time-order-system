@@ -3,13 +3,13 @@ import './App.css';
 
 import { SocketService } from "../../core/socket.service";
 import { mapOrder } from "../utils/mapper.util";
-import { OrderViewModel } from "../models/order.model";
+import { OrderModel } from "../models/order.model";
 import { OrderTable } from "../components/order/order-table.component";
 import { Utils } from "../utils/utils";
 
 function App() {
-  const [orders, setOrders] = useState<OrderViewModel[]>([]);
-  const [filteredOrders, setFilteredOrders] = useState<OrderViewModel[]>([]);
+  const [orders, setOrders] = useState<OrderModel[]>([]);
+  const [filteredOrders, setFilteredOrders] = useState<OrderModel[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [totalOrderCount, setTotalOrderCount] = useState<number>(0);
   const [filteredOrderCount, setFilteredOrderCount] = useState<number>(0);
@@ -18,7 +18,7 @@ function App() {
     SocketService.connect();
 
     SocketService.on('order_event', (data: any) => {
-      setOrders((prevState: OrderViewModel[]) => Utils.mergeArrays(prevState, data.map((item: any) => mapOrder(item))));
+      setOrders((prevState: OrderModel[]) => Utils.mergeArrays(prevState, data.map((item: any) => mapOrder(item))));
     });
 
     return () => {
@@ -30,7 +30,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const filtered = orders.filter((item: OrderViewModel) => item.price.toString().includes(searchQuery));
+    const filtered = orders.filter((item: OrderModel) => item.price.toString().includes(searchQuery));
     setFilteredOrders(filtered);
     setFilteredOrderCount(filtered.length)
     setTotalOrderCount(orders.length);

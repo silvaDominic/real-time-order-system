@@ -6,7 +6,7 @@ export interface AddressConfig {
   streetAddress: string, // House#, Street [Apt#], City, State Zipcode
 }
 
-export class AddressViewModel {
+export class AddressView {
   city: string;
   state: string;
   zipCode: string;

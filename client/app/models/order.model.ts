@@ -19,7 +19,7 @@ export interface OrderConfig {
   sentAtSecond: number
 }
 
-export class OrderViewModel {
+export class OrderModel {
   id: string;
   status: ORDER_STATUS;
   price: number; // In cents

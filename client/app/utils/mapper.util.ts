@@ -1,9 +1,9 @@
-import { ORDER_STATUS, OrderConfig, OrderViewModel } from "../models/order.model";
-import { AddressConfig, AddressViewModel } from "../models/address.model";
+import { ORDER_STATUS, OrderConfig, OrderModel } from "../models/order.model";
+import { AddressConfig, AddressView } from "../models/address.model";
 import { CurrencyUtil } from "./currency.util";
 
-export function mapOrder(orderDTO: any): OrderViewModel {
-  return new OrderViewModel({
+export function mapOrder(orderDTO: any): OrderModel {
+  return new OrderModel({
     id: orderDTO.id,
     status: ORDER_STATUS[orderDTO.event_name] || ORDER_STATUS.UNKNOWN,
     price: CurrencyUtil.centsToDollars(orderDTO.price),
@@ -20,12 +20,12 @@ export function mapOrder(orderDTO: any): OrderViewModel {
  * to the client side defined AddressConfig format.
  * @param addressDTO
  */
-export function mapAddress(addressDTO: string): AddressViewModel {
+export function mapAddress(addressDTO: string): AddressView {
   // Normalize tokens -- this would be more robust in a production app
   const [streetAddress, city, stateZip] = addressDTO.trim().split(",");
   const [state, zipCode] = stateZip.trim().split(" ");
 
-  return new AddressViewModel({
+  return new AddressView({
     city: city.trim(),
     state,
     zipCode,

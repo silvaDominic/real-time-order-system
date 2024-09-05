@@ -1,8 +1,8 @@
-import { ORDER_STATUS, OrderViewModel } from "../../models/order.model";
+import { ORDER_STATUS, OrderModel } from "../../models/order.model";
 
 import './order.styles.css';
 
-export function OrderTable({orders}: {orders: OrderViewModel[]}) {
+export function OrderTable({orders}: {orders: OrderModel[]}) {
   function formatStatus(status: ORDER_STATUS): string {
     const str: string = status.toLowerCase()
     return str.charAt(0).toUpperCase() + str.slice(1).replace('_', ' ');
@@ -23,7 +23,7 @@ export function OrderTable({orders}: {orders: OrderViewModel[]}) {
 
         <tbody>
         {
-          orders.map((order: OrderViewModel) => {
+          orders.map((order: OrderModel) => {
             return (
               <tr key={order.id}>
                 <td>{order.customer}</td>
