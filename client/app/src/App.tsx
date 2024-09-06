@@ -18,6 +18,7 @@ function App() {
     SocketService.connect();
 
     SocketService.on('order_event', (data: any) => {
+      // Use the merge array util to update existing items while adding new ones
       setOrders((prevState: OrderModel[]) => Utils.mergeArrays(prevState, data.map((item: any) => mapOrder(item))));
     });
 
@@ -29,6 +30,7 @@ function App() {
     }
   }, []);
 
+  // Controls updates with respect to search and order changes
   useEffect(() => {
     const filtered = orders.filter((item: OrderModel) => item.price.toString().includes(searchQuery));
     setFilteredOrders(filtered);
