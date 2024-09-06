@@ -1,13 +1,9 @@
 import { ORDER_STATUS, OrderModel } from "../../models/order.model";
 
 import './order.styles.css';
+import { OrderItem } from "./order-item.component";
 
 export function OrderTable({orders}: {orders: OrderModel[]}) {
-  function formatStatus(status: ORDER_STATUS): string {
-    const str: string = status.toLowerCase()
-    return str.charAt(0).toUpperCase() + str.slice(1).replace('_', ' ');
-  }
-
   return (
     <div className='table-wrapper'>
       <table>
@@ -22,19 +18,7 @@ export function OrderTable({orders}: {orders: OrderModel[]}) {
         </thead>
 
         <tbody>
-        {
-          orders.map((order: OrderModel) => {
-            return (
-              <tr key={order.id}>
-                <td>{order.customer}</td>
-                <td>{order.itemName}</td>
-                <td>{formatStatus(order.status)}</td>
-                <td>{order.price}</td>
-                <td>{order.destination}</td>
-              </tr>
-            )
-          })
-        }
+          { orders.map((order: OrderModel) => <OrderItem {...order} />) }
         </tbody>
       </table>
     </div>
