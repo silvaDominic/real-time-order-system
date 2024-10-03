@@ -4,7 +4,7 @@ import './App.css';
 import { SocketService } from "../../core/socket.service";
 import { mapOrder } from "../utils/mapper.util";
 import { OrderModel } from "../models/order.model";
-import { OrderTable } from "../components/order/order-table.component";
+import { OrderTable } from "./components/order/order-table.component";
 import { Utils } from "../utils/utils";
 
 function App() {

@@ -1,4 +1,4 @@
-import { ORDER_STATUS } from "../../models/order.model";
+import { ORDER_STATUS } from "../../../models/order.model";
 
 interface OrderItemProps {
   id: string,

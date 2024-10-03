@@ -1,4 +1,4 @@
-import { ORDER_STATUS, OrderModel } from "../../models/order.model";
+import { ORDER_STATUS, OrderModel } from "../../../models/order.model";
 
 import './order.styles.css';
 import { OrderItem } from "./order-item.component";
