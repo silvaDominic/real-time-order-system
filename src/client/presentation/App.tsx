@@ -14,6 +14,12 @@ function App() {
   const [totalOrderCount, setTotalOrderCount] = useState<number>(0);
   const [filteredOrderCount, setFilteredOrderCount] = useState<number>(0);
 
+  const [pageSize, setPageSize] = useState<number>(20);
+  const [currPageIndex, setCurrPageIndex] = useState<number>(0);
+  const [lastPage, setLastPage] = useState<number>(0);
+  const [canGoNext, setCanGoNext] = useState<boolean>(false);
+  const [canGoBack, setCanGoBack] = useState<boolean>(false);
+
   useEffect(() => {
     SocketService.connect();
 
@@ -30,13 +36,36 @@ function App() {
     }
   }, []);
 
-  // Controls updates with respect to search and order changes
+  // Controls updates with respect to search, pagination, and order changes
   useEffect(() => {
-    const filtered = orders.filter((item: OrderModel) => item.price.toString().includes(searchQuery));
+    setLastPage(Math.ceil(totalOrderCount / pageSize));
+
+    const start = currPageIndex * pageSize;
+    const end = start + pageSize + 1;
+    const pageItems = orders.slice(start, end);
+    const filtered = pageItems.filter((item: OrderModel) => item.price.toString().includes(searchQuery));
+
     setFilteredOrders(filtered);
     setFilteredOrderCount(filtered.length)
     setTotalOrderCount(orders.length);
-  }, [searchQuery, orders]);
+  }, [searchQuery, orders, pageSize, currPageIndex]);
+
+  useEffect(() => {
+  }, []);
+
+  // Disable previous and next buttons in the first and last page respectively
+  useEffect(() => {
+    if (currPageIndex <= 0) {
+      setCanGoBack(false);
+    } else {
+      setCanGoBack(true);
+    }
+    if (currPageIndex >= lastPage) {
+      setCanGoNext(false);
+    } else {
+      setCanGoNext(true);
+    }
+  }, [currPageIndex, lastPage]);
 
   function onSearch(event: ChangeEvent<HTMLInputElement>): void {
     setSearchQuery(event.target.value.replace(/[^0-9.]/g, '')); // Restricts input to numbers and decimals
@@ -54,11 +83,27 @@ function App() {
         <div className='order-counter-container'>
           <h2>Total Orders: {totalOrderCount}</h2>
           <h2>Filtered Orders: {filteredOrderCount}</h2>
+          <h2>Current Page: {currPageIndex + 1}</h2>
+          <h2>Last Page: {lastPage + 1}</h2>
         </div>
       </div>
 
-
       <OrderTable orders={filteredOrders}/>
+
+      <div className='pagination-container'>
+        <div className="button-wrapper">
+          <button disabled={!canGoBack} onClick={() => setCurrPageIndex(0)}>Start</button>
+          <button disabled={!canGoBack} onClick={() => setCurrPageIndex((prev: number) => prev - 1)}>Prev</button>
+          <button disabled={!canGoNext} onClick={() => setCurrPageIndex((prev: number) => prev + 1)}>Next</button>
+          <button disabled={!canGoNext} onClick={() => setCurrPageIndex(lastPage)}>Last</button>
+
+          <select name="" id="" onChange={(e: ChangeEvent<HTMLSelectElement>) => setPageSize(Number(e.target.value))}>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+          </select>
+        </div>
+      </div>
     </div>
   );
 }

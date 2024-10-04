@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.pagination-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  width: 100%;
+  bottom: 0;
+  padding: 25px 0;
+}
+
+.pagination-container button {
+  margin: 0 10px;
+}

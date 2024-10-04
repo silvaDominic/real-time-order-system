@@ -1,6 +1,7 @@
 import { ORDER_STATUS } from "../../../application/models/order.model";
 
 interface OrderItemProps {
+  index: number,
   id: string,
   customer: string,
   itemName: string,
