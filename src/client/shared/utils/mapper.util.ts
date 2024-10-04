@@ -1,5 +1,4 @@
 import { ORDER_STATUS, OrderConfig, OrderModel } from "../../application/models/order.model";
-import { AddressConfig, AddressView } from "../models/address.model";
 import { CurrencyUtil } from "./currency.util";
 
 export function mapOrder(orderDTO: any): OrderModel {

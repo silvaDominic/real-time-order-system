@@ -1,5 +1,3 @@
-import { AddressConfig } from "./address.model";
-
 export enum ORDER_STATUS {
   CREATED = "CREATED",
   COOKED = "COOKED",
