@@ -4,7 +4,6 @@
   "description": "Socket server that supplies a front-end with order data",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "author": "City Storage Systems",

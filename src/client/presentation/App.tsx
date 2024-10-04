@@ -1,11 +1,11 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import './App.css';
 
-import { SocketService } from "../../core/socket.service";
-import { mapOrder } from "../utils/mapper.util";
-import { OrderModel } from "../models/order.model";
+import { SocketService } from "../application/services/socket.service";
+import { mapOrder } from "../shared/utils/mapper.util";
+import { OrderModel } from "../application/models/order.model";
 import { OrderTable } from "./components/order/order-table.component";
-import { Utils } from "../utils/utils";
+import { Utils } from "../shared/utils/utils";
 
 function App() {
   const [orders, setOrders] = useState<OrderModel[]>([]);

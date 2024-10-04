@@ -1,4 +1,4 @@
-import { ORDER_STATUS, OrderConfig, OrderModel } from "../models/order.model";
+import { ORDER_STATUS, OrderConfig, OrderModel } from "../../application/models/order.model";
 import { AddressConfig, AddressView } from "../models/address.model";
 import { CurrencyUtil } from "./currency.util";
 
