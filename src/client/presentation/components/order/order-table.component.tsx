@@ -18,7 +18,11 @@ export function OrderTable({orders}: {orders: OrderModel[]}) {
         </thead>
 
         <tbody>
-          { orders.map((order: OrderModel) => <OrderItem {...order} />) }
+          { orders.map((order: OrderModel) => (
+            <tr key={order.id}>
+              <OrderItem {...order} />
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

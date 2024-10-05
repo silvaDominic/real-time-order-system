@@ -1,8 +1,7 @@
 import { ORDER_STATUS } from "../../../application/models/order.model";
+import { Fragment } from "react";
 
 interface OrderItemProps {
-  index: number,
-  id: string,
   customer: string,
   itemName: string,
   status: ORDER_STATUS,
@@ -10,19 +9,19 @@ interface OrderItemProps {
   destination: string,
 }
 
-export function OrderItem({id, customer, itemName, status, price, destination}: OrderItemProps) {
+export function OrderItem({customer, itemName, status, price, destination}: OrderItemProps) {
   function formatStatus(status: ORDER_STATUS): string {
     const str: string = status.toLowerCase()
     return str.charAt(0).toUpperCase() + str.slice(1).replace('_', ' ');
   }
 
   return (
-    <tr key={id}>
+    <>
       <td>{customer}</td>
       <td>{itemName}</td>
       <td>{formatStatus(status)}</td>
       <td>{price}</td>
       <td>{destination}</td>
-    </tr>
+    </>
   )
 }
