@@ -1,9 +1,13 @@
 .table-wrapper {
     border-collapse: collapse;
-    margin-bottom: 25px;
+    margin-bottom: 75px;
     font-size: 0.9em;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table {
+    width: 100%;
 }
 
 .styled-table thead tr {
@@ -15,7 +19,6 @@
 .table-wrapper th,
 .table-wrapper td {
     padding: 12px 15px;
-    min-width: 300px;
 }
 .table-wrapper tbody tr {
     border-bottom: 1px solid #dddddd;
@@ -23,6 +26,35 @@
 
 .table-wrapper tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
+}
+
+.status-bar {
+    width: 10px;
+    background-color: grey;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.black {
+    background-color: black;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.red {
+    background-color: red;
 }
 
 #header {

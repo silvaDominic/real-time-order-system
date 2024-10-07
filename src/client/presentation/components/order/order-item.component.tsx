@@ -9,6 +9,15 @@ interface OrderItemProps {
   destination: string,
 }
 
+const COLORS = {
+  [ORDER_STATUS.CREATED]: "blue",
+  [ORDER_STATUS.COOKED]: "orange",
+  [ORDER_STATUS.DRIVER_RECEIVED]: "yellow",
+  [ORDER_STATUS.DELIVERED]: "green",
+  [ORDER_STATUS.CANCELLED]: 'red',
+  [ORDER_STATUS.UNKNOWN]: 'black',
+}
+
 export function OrderItem({customer, itemName, status, price, destination}: OrderItemProps) {
   function formatStatus(status: ORDER_STATUS): string {
     const str: string = status.toLowerCase()
@@ -17,6 +26,7 @@ export function OrderItem({customer, itemName, status, price, destination}: Orde
 
   return (
     <>
+      <td className={`status-bar ${COLORS[status]}`}></td>
       <td>{customer}</td>
       <td>{itemName}</td>
       <td>{formatStatus(status)}</td>

@@ -9,6 +9,7 @@ export function OrderTable({orders}: {orders: OrderModel[]}) {
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>Name</th>
             <th>Item</th>
             <th>Status</th>
