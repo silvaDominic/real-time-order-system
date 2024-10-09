@@ -11,8 +11,6 @@ function App() {
   const [orders, setOrders] = useState<OrderModel[]>([]);
   const [filteredOrders, setFilteredOrders] = useState<OrderModel[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [totalOrderCount, setTotalOrderCount] = useState<number>(0);
-  const [filteredOrderCount, setFilteredOrderCount] = useState<number>(0);
 
   const [pageSize, setPageSize] = useState<number>(20);
   const [currPageIndex, setCurrPageIndex] = useState<number>(0);
@@ -38,7 +36,7 @@ function App() {
 
   // Controls updates with respect to search, pagination, and order changes
   useEffect(() => {
-    setLastPage(Math.ceil(totalOrderCount / pageSize));
+    setLastPage(Math.ceil(orders.length / pageSize) - 1);
 
     const start = currPageIndex * pageSize;
     const end = start + pageSize + 1;
@@ -46,8 +44,6 @@ function App() {
     const filtered = pageItems.filter((item: OrderModel) => item.price.toString().includes(searchQuery));
 
     setFilteredOrders(filtered);
-    setFilteredOrderCount(filtered.length)
-    setTotalOrderCount(orders.length);
   }, [searchQuery, orders, pageSize, currPageIndex]);
 
   useEffect(() => {
@@ -81,8 +77,8 @@ function App() {
         </div>
 
         <div className='order-counter-container'>
-          <h2>Total Orders: {totalOrderCount}</h2>
-          <h2>Filtered Orders: {filteredOrderCount}</h2>
+          <h2>Total Orders: {orders.length}</h2>
+          <h2>Filtered Orders: {filteredOrders.length}</h2>
           <h2>Current Page: {currPageIndex + 1}</h2>
           <h2>Last Page: {lastPage + 1}</h2>
         </div>
