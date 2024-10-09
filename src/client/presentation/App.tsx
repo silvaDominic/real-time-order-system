@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import './App.css';
 
 import { SocketService } from "../application/services/socket.service";
-import { mapOrder } from "../shared/utils/mapper.util";
+import { mapOrderModel } from "../shared/utils/mapper.util";
 import { OrderModel } from "../application/models/order.model";
 import { OrderTable } from "./components/order/order-table.component";
 import { Utils } from "../shared/utils/utils";
@@ -25,7 +25,7 @@ function App() {
 
     SocketService.on('order_event', (data: any) => {
       // Use the merge array util to update existing items while adding new ones
-      setOrders((prevState: OrderModel[]) => Utils.mergeArrays(prevState, data.map((item: any) => mapOrder(item))));
+      setOrders((prevState: OrderModel[]) => Utils.mergeArrays(prevState, data.map((item: any) => mapOrderModel(item))));
     });
 
     return () => {

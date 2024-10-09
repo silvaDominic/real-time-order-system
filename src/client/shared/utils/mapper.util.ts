@@ -1,7 +1,7 @@
 import { ORDER_STATUS, OrderConfig, OrderModel } from "../../application/models/order.model";
 import { CurrencyUtil } from "./currency.util";
 
-export function mapOrder(orderDTO: any): OrderModel {
+export function mapOrderModel(orderDTO: any): OrderModel {
   return new OrderModel({
     id: orderDTO.id,
     status: ORDER_STATUS[orderDTO.event_name] || ORDER_STATUS.UNKNOWN,
