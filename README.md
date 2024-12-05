@@ -3,8 +3,6 @@ ___
 
 The focus on the exercise was to build something that evoked a production grade application. The architecture and structure is absolutely overkill for something this trivial, but it should help demonstrate where things might live and give a sense of how it could scale easily.
 
-I have to note that there is some annoying extra webpack overrides courtesy of [craco](https://craco.js.org/), but that's because I didn't want to spend much time fiddling with a custom webpack config for a monolith of this structure.
-
 ## Noteable Features
 
 - Server and client separated into their own modules
